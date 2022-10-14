@@ -40,11 +40,20 @@ def create_ships(board):
         ship_row, ship_column = randint(0, 7), randint(0, 7)
     board[ship_row][ship_column] = 'X'
 
+
 def get_ship_location():
     """
-    Asks the user for what row and column they want to guess where the ship is
+    Asks the user for which row and column they want to guess where the ship is
     """
-    
+    row = input('Please enter a row, 1-8: ')
+    while row not in '12345678':
+        print('Please enter a valid row')
+        row = input('Please enter a row, 1-8: ')
+        column = input('Please enter a column, 1-8: ').upper()
+    while row not in 'ABCDEFGH':
+        print('Please enter a valid row')
+        row = input('Please enter a row, 1-8: ')
+        return int(row) - 1, letters_to_numbers[column]  
 
 
 def count_hit_ships():
@@ -52,5 +61,5 @@ def count_hit_ships():
     This will count each hit you get. If you get all five
     The game is over.
     """
-    pass
+    
 
