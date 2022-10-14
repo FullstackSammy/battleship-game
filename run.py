@@ -46,14 +46,14 @@ def get_ship_location():
     """
     Asks the user for which row and column they want to guess where the ship is
     """
-    row = input("Enter the row of the ship: ").upper()
+    row = input("Enter the row of the ship (1-8): ").upper()
     while row not in "12345678":
         print('Not an appropriate choice, please select a valid row')
-        row = input("Enter the row of the ship: ").upper()
-    column = input("Enter the column of the ship: ").upper()
+        row = input("Enter the row of the ship (1-8): ").upper()
+    column = input("Enter the column of the ship (A-H): ").upper()
     while column not in "ABCDEFGH":
         print('Not an appropriate choice, please select a valid column')
-        column = input("Enter the column of the ship: ").upper()
+        column = input("Enter the column of the ship (A-H): ").upper()
     return int(row) - 1, letters_to_numbers[column]
 
 
@@ -95,8 +95,7 @@ def run_game():
             break
         print(f'You have {turns} turns left!')
         if turns == 0:
-            print("You ran out of turns")
+            print("You ran out of turns. Game over")
 
 
-if __name__ == "__main__":
-    run_game()
+run_game()
