@@ -139,33 +139,35 @@ def count_hit_ships(board):
     return count
 
 
-def run_game():
+def start_screen():
     """
-    This function runs starts the game.
+    This function is the main starting page. 
+    It welcomes you to the game with a short explanation.
+    Requires you to enter a username to start the game.
     """
     create_ships(computer_board)
-    turns = 10
+    create_ships(player_board)
     print("Welcome to Battleships")
-    while turns > 0:
-        print('Guess a location for enemy ship')
-        print_board(guessing_board)
-        row, column = get_ship_location()
-        if guessing_board[row][column] == "-":
-            print("That guess has already been made")
-        elif guessing_board[row][column] == "X":
-            print("Well done! You sunk an enemy ship!")
-            guessing_board[row][column] = "X"
-            turns -= 1
-        else:
-            print("Aw, you missed. try again!")
-            guessing_board[row][column] = "-"
-            turns -= 1
-        if count_hit_ships(guessing_board) == 5:
-            print("Congratulations! You win the game!")
-            break
-        print(f'You have {turns} turns left!')
-        if turns == 0:
-            print("You ran out of turns. Game over")
+    print("You have 10 turns to find all of the battleships")
+    global username
+    username = input("Please enter your name:\n")
+    while username == "" or username == " ":
+        print("Sorry, please can you enter a name.")
+        username = input("Please enter your name:\n")
 
 
-run_game()
+def try_continue_game(values):
+    """
+    prints a TypeError if values entered are not in continue_game
+    """
+    try:
+        if values not in continue_game:
+            print(
+                f"Please enter y/n, you provided '{values}'."
+                )
+    except TypeError:
+        print('Sorry y/n required, please try again.')
+        return False
+
+    return True
+
