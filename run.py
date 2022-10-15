@@ -171,3 +171,71 @@ def try_continue_game(values):
 
     return True
 
+def run_game():
+    """
+    This function runs the game.
+    player has 10 turns and when 0, game over
+    """
+    turns = 10
+    global player_score
+
+    while turns > 0:
+        print(f"{username}'s Board")
+        print_board(player_board)
+        print("Computer's Board")
+        print_board(guessing_board)
+        row, column = get_ship_location()
+        if guessing_board[row][column] == "-" or guessing_board[row][column] == "X":
+            print("You have already guessed that")
+        elif computer_board[row][column] == "@":
+            print(f"Congratulations {username}, you have hit the battleship")
+            guessing_board[row][column] = "X"
+            turns -= 1
+            computer_guess(player_board)
+            player_score += 1
+        else:
+            print(f"Sorry {username}, you missed")
+            guessing_board[row][column] = "-"
+            turns -= 1
+            computer_guess(player_board)
+        if count_hit_ships(guessing_board) == 5:
+            print(
+                f"Congratulations {username}, "
+                "you have sunk all of the battleships")
+            print("The game is now over")
+            break
+        print("You have " + str(turns) + " turns remaining")
+        print(f"{username}'s Score: {player_score}")
+        print(f"Computer's Score: {computer_score}")
+        if turns == 0:
+            print(
+                f"Sorry {username}, you ran out of turns, the game is over")
+            break
+        if count_hit_ships(player_board) == 5:
+            print(
+                f"Sorry {username}, the computer"
+                " has sunk all of your battleships")
+            break
+        if count_hit_ships(guessing_board) < 5:
+            continue_playing = input(
+                    "Do you want to continue playing? y/n\n").lower()
+            while continue_playing not in continue_game:
+                try_continue_game(continue_game)
+                continue_playing = input(
+                    "Do you want to continue playing? y/n\n").lower()
+            if continue_playing == "y" or continue_playing == "yes":
+                print(
+                    "You have decided to continue playing the game.")
+                continue
+            elif continue_playing == "n" or continue_playing == "no":
+                print(
+                    "You have decided to stop playing, the game is now over")
+                break
+            else:
+                print("Sorry, can you please enter y/n")
+                continue_playing = input(
+                    "Do you want to continue playing? y/n \n")
+
+
+start_screen()
+run_game()
