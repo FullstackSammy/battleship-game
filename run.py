@@ -50,7 +50,7 @@ def print_board(board):
 def create_ships(board):
     """
     This function will generate and place out ships randomly on the boards.
-    It generates an integer with random int between 0 and 7 for the row and column
+    Generates an integer with random int between 0 and 7 for the row and column
     """
     for ship in range(5):
         ship_row, ship_column = randint(0, 7), randint(0, 7)
@@ -68,12 +68,63 @@ def computer_guess(board):
         computer_column = randint(0, 7)
     elif player_board[computer_row][computer_column] == "@":
         print(f'Oh no {username}! One of you ships went down!')
-        print(f'The computer guessed row {computer_row +1} and column {computer_column}')
     else:
         print(f'The computer missed. Get him next turn {username}.')
         print(f'Oh no {username}! One of you ships went down!')
-        print(f'The computer guessed row {computer_row +1} and column {computer_column}')
         player_board[computer_row][computer_column] = "-"
+
+
+def try_row(values):
+    """
+    Prints an error message if values entered are not interger between 1-8
+    """
+    try:
+        [int(value) for value in values]
+        if int(values) < 1 or int(values) > 8:
+            print(
+                f"Number between 1-8 required, you provided '{values}'."
+            )
+    except TypeError:
+        print("Sorry number between 1-8 required, please try again.\n")
+        return False
+
+    return True
+
+
+def try_column(values):
+    """
+    Prints an error message if values entered are not in letters_to_numbers
+    """
+    try:
+        if values not in letters_to_numbers:
+            print(
+                f"Letter between A-H required, you provided '{values}'."
+                )
+    except TypeError:
+        print("Sorry letter between A-H required, please try again.")
+        return False
+
+    return True
+
+
+def get_ship_location():
+    """
+    Asks the user for which row and column they want to guess where the ship is
+    checks the input data for row and columns
+    returns integer for row and converts letters to numbers for column
+    """
+    row = input("Enter the row of the ship (1-8): ").upper()
+    while row not in "12345678":
+        try_row(row)
+        print('Not an appropriate choice, please select a valid row')
+        row = input("Enter the row of the ship (1-8): ").upper()
+    column = input("Enter the column of the ship (A-H): ").upper()
+    while column not in "ABCDEFGH":
+        try_column(column)
+        print('Not an appropriate choice, please select a valid column')
+        column = input("Enter the column of the ship (A-H): ").upper()
+    return int(row) - 1, letters_to_numbers[column]
+
 
 def count_hit_ships(board):
     """
