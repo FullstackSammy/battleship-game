@@ -27,6 +27,13 @@ letters_to_numbers = {
 }
 
 
+player_score = 0
+computer_score = 0
+
+
+continue_game = ['y', 'yes', 'n', 'no']
+
+
 def print_board(board):
     """
     This function prints and displays the boards.
@@ -43,28 +50,30 @@ def print_board(board):
 def create_ships(board):
     """
     This function will generate and place out ships randomly on the boards.
+    It generates an integer with random int between 0 and 7 for the row and column
     """
     for ship in range(5):
         ship_row, ship_column = randint(0, 7), randint(0, 7)
-        while board[ship_row][ship_column] == "X":
-            ship_row, ship_column = get_ship_location()
-        board[ship_row][ship_column] = "X"
+        while board[ship_row][ship_column] == "@":
+            ship_row, ship_column = randint(0, 7), randint(0, 7)
+        board[ship_row][ship_column] = "@"
 
 
-def get_ship_location():
-    """
-    Asks the user for which row and column they want to guess where the ship is
-    """
-    row = input("Enter the row of the ship (1-8): ").upper()
-    while row not in "12345678":
-        print('Not an appropriate choice, please select a valid row')
-        row = input("Enter the row of the ship (1-8): ").upper()
-    column = input("Enter the column of the ship (A-H): ").upper()
-    while column not in "ABCDEFGH":
-        print('Not an appropriate choice, please select a valid column')
-        column = input("Enter the column of the ship (A-H): ").upper()
-    return int(row) - 1, letters_to_numbers[column]
-
+def computer_guess(board):
+    global computer_score
+    computer_row, computer_column = randint(0, 7), randint(0, 7)
+    if (player_board[computer_row][computer_column] == "-" or
+            player_board[computer_row][computer_column] == "X"):
+        computer_row = randint(0, 7)
+        computer_column = randint(0, 7)
+    elif player_board[computer_row][computer_column] == "@":
+        print(f'Oh no {username}! One of you ships went down!')
+        print(f'The computer guessed row {computer_row +1} and column {computer_column}')
+    else:
+        print(f'The computer missed. Get him next turn {username}.')
+        print(f'Oh no {username}! One of you ships went down!')
+        print(f'The computer guessed row {computer_row +1} and column {computer_column}')
+        player_board[computer_row][computer_column] = "-"
 
 def count_hit_ships(board):
     """
