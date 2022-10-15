@@ -69,14 +69,13 @@ def computer_guess(board):
     elif player_board[computer_row][computer_column] == "@":
         print(f'Oh no {username}! One of you ships went down!')
     else:
-        print(f'The computer missed. Get him next turn {username}.')
-        print(f'Oh no {username}! One of you ships went down!')
+        print('The computer missed.')
         player_board[computer_row][computer_column] = "-"
 
 
 def try_row(values):
     """
-    Prints an error message if values entered are not interger between 1-8
+    Prints an error message if values entered are not an integer between 1-8
     """
     try:
         [int(value) for value in values]
@@ -171,6 +170,7 @@ def try_continue_game(values):
 
     return True
 
+
 def run_game():
     """
     This function runs the game.
@@ -188,20 +188,20 @@ def run_game():
         if guessing_board[row][column] == "-" or guessing_board[row][column] == "X":
             print("You have already guessed that")
         elif computer_board[row][column] == "@":
-            print(f"Congratulations {username}, you have hit the battleship")
+            print(f"Well done {username}! You have sunk an enemy ship!")
             guessing_board[row][column] = "X"
             turns -= 1
             computer_guess(player_board)
             player_score += 1
         else:
-            print(f"Sorry {username}, you missed")
+            print(f"Sorry, you missed! Get him next turn {username}.")
             guessing_board[row][column] = "-"
             turns -= 1
             computer_guess(player_board)
         if count_hit_ships(guessing_board) == 5:
             print(
                 f"Congratulations {username}, "
-                "you have sunk all of the battleships")
+                "you have sunk all of the enemy battleships!")
             print("The game is now over")
             break
         print("You have " + str(turns) + " turns remaining")
@@ -209,7 +209,7 @@ def run_game():
         print(f"Computer's Score: {computer_score}")
         if turns == 0:
             print(
-                f"Sorry {username}, you ran out of turns, the game is over")
+                f"Sorry {username}. You ran out of turns. The game is over")
             break
         if count_hit_ships(player_board) == 5:
             print(
@@ -218,7 +218,7 @@ def run_game():
             break
         if count_hit_ships(guessing_board) < 5:
             continue_playing = input(
-                    "Do you want to continue playing? y/n\n").lower()
+                    "Do you want to continue playing? y/n \n").lower()
             while continue_playing not in continue_game:
                 try_continue_game(continue_game)
                 continue_playing = input(
