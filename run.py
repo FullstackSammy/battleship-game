@@ -60,6 +60,9 @@ def create_ships(board):
 
 
 def computer_guess(board):
+    """
+    This function randomly calculates and deploy the computers guess.
+    """
     global computer_score
     computer_row, computer_column = randint(0, 7), randint(0, 7)
     if (player_board[computer_row][computer_column] == "-" or
@@ -94,7 +97,7 @@ def get_ship_location():
 
 def try_row(values):
     """
-    If values entered not an interger between 1-8 error message printed
+    prints a ValueError if values entered are not an interger between 1-8
     """
     try:
         [int(value) for value in values]
@@ -111,7 +114,7 @@ def try_row(values):
 
 def try_column(values):
     """
-    If values entered not in letters_to_numbers error message printed
+    prints a ValueError if values entered are not in letters_to_numbers
     """
     try:
         if values not in letters_to_numbers:
@@ -140,7 +143,7 @@ def count_hit_ships(board):
 
 def start_screen():
     """
-    This function is the main starting page. 
+    This function is the main starting page.
     It welcomes you to the game with a short explanation.
     Requires you to enter a username to start the game.
     """
@@ -161,14 +164,14 @@ def start_screen():
 
 def try_continue_game(values):
     """
-    prints a TypeError if values entered are not in continue_game
+    prints a ValueError if values entered are not in continue_game
     """
     try:
         if values not in continue_game:
             print(
                 f"Please enter y/n, you provided '{values}'."
                 )
-    except TypeError:
+    except ValueError():
         print('Sorry y/n required, please try again.')
         return False
 
@@ -218,7 +221,7 @@ def run_game():
             break
         if count_hit_ships(player_board) == 5:
             print(
-                f"Sorry {username}, the computer"
+                f"Sorry {username}, the enemy"
                 " has sunk all of your battleships")
             break
         if count_hit_ships(guessing_board) < 5:

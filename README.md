@@ -124,6 +124,7 @@ I used the video as the basic layout for the code. I have watched the video agai
 - numbers_to_letters
 - computer_score
 - computer_guess()
+- continue_game
 - try_row() and try_column()
 - try_continue_game()
 - start_screen()
