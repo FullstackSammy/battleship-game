@@ -67,15 +67,34 @@ def computer_guess(board):
         computer_row = randint(0, 7)
         computer_column = randint(0, 7)
     elif player_board[computer_row][computer_column] == "@":
-        print(f"Oh no {username}! One of you ships went down!")
+        print(f'Oh no {username}! One of you ships went down!')
     else:
         print('The computer missed.')
         player_board[computer_row][computer_column] = "-"
 
 
+def get_ship_location():
+    # Code taken from Knowledge Mavens video, see README
+    """
+    Asks user to input the guesses for ship row and ship column locations
+    Returns int for row - 1 to match index number, converts letters to numbers
+    """
+    row = input("Please enter a ship row 1-8\n")
+    while row not in "12345678" or len(row) > 1 or row == "":
+        try_row(row)
+        print("Please enter a valid row")
+        row = input("Please enter a ship row 1-8\n")
+    column = input("Please enter a ship column A-H\n").upper()
+    while column not in "ABCDEFGH" or len(column) > 1 or column == "":
+        try_column(column)
+        print("Please enter a valid column")
+        column = input("Please enter a ship column A-H\n").upper()
+    return int(row) - 1, letters_to_numbers[column]
+
+
 def try_row(values):
     """
-    Prints an error message if values entered are not an integer between 1-8
+    If values entered not an interger between 1-8 error message printed
     """
     try:
         [int(value) for value in values]
@@ -83,8 +102,8 @@ def try_row(values):
             print(
                 f"Number between 1-8 required, you provided '{values}'."
             )
-    except TypeError:
-        print("Sorry number between 1-8 required, please try again.\n")
+    except ValueError:
+        print("Sorry number between 1-8 required, please try again.")
         return False
 
     return True
@@ -92,37 +111,18 @@ def try_row(values):
 
 def try_column(values):
     """
-    Prints an error message if values entered are not in letters_to_numbers
+    If values entered not in letters_to_numbers error message printed
     """
     try:
         if values not in letters_to_numbers:
             print(
                 f"Letter between A-H required, you provided '{values}'."
                 )
-    except TypeError:
+    except ValueError:
         print("Sorry letter between A-H required, please try again.")
         return False
 
     return True
-
-
-def get_ship_location():
-    """
-    Asks the user for which row and column they want to guess where the ship is
-    checks the input data for row and columns
-    returns integer for row and converts letters to numbers for column
-    """
-    row = input("Enter the row of the ship (1-8): ").upper()
-    while row not in "12345678":
-        try_row(row)
-        print('Not an appropriate choice, please select a valid row')
-        row = input("Enter the row of the ship (1-8): ").upper()
-    column = input("Enter the column of the ship (A-H): ").upper()
-    while column not in "ABCDEFGH":
-        try_column(column)
-        print('Not an appropriate choice, please select a valid column')
-        column = input("Enter the column of the ship (A-H): ").upper()
-    return int(row) - 1, letters_to_numbers[column]
 
 
 def count_hit_ships(board):
@@ -189,7 +189,8 @@ def run_game():
         print("Computer's Board")
         print_board(guessing_board)
         row, column = get_ship_location()
-        if guessing_board[row][column] == "-" or guessing_board[row][column] == "X":
+        if (guessing_board[row][column] == "-" or 
+                guessing_board[row][column] == "X"):
             print("You have already guessed that")
         elif computer_board[row][column] == "@":
             print(f"Well done {username}! You have sunk an enemy ship!")
