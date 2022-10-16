@@ -35,6 +35,7 @@ continue_game = ['y', 'yes', 'n', 'no']
 
 
 def print_board(board):
+    # Code taken from Knowledge Mavens video, see README
     """
     This function prints and displays the boards.
     numbers for rows and letters for columns
@@ -48,6 +49,7 @@ def print_board(board):
 
 
 def create_ships(board):
+    # Code taken from Knowledge Mavens video, see README
     """
     This function will generate and place out ships randomly on the boards.
     Generates an integer with random int between 0 and 7 for the row and column
@@ -129,6 +131,7 @@ def try_column(values):
 
 
 def count_hit_ships(board):
+    # Code taken from Knowledge Mavens video, see README
     """
     This will count each hit you get. If you get all five
     The game is over.
