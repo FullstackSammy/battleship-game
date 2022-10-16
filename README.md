@@ -75,3 +75,23 @@ When the game is started the boards are generated and displayed to the user. The
 - "@" markers for where your ships are
 - input area where you put your guesses
 
+![board screen]()
+
+If you enter an invalid input ( not an integer or not a letter) when you make your guess. the following errors will show:
+
+![board error]()
+
+Once you get things right and make a correct guess. The computer will start to calculate and see if either of you got a hit.
+Messages will be displayed and a continue to play option will appear. For example:
+
+![continue playing]()
+
+this also needs a valid input to work. Or you will get the following error:
+
+![continue error]()
+
+After a round, and you decided to continue playing, a newly generated board is shown with updated information about where you hits and misses are located.
+
+![hit/miss location]()
+
+When the user hit all 5 ships and wins, a congratulations-message appears and the game ends. The same goes if the computer wins.
