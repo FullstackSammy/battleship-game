@@ -67,7 +67,7 @@ def computer_guess(board):
         computer_row = randint(0, 7)
         computer_column = randint(0, 7)
     elif player_board[computer_row][computer_column] == "@":
-        print(f'Oh no {username}! One of you ships went down!')
+        print(f"Oh no {username}! One of you ships went down!")
     else:
         print('The computer missed.')
         player_board[computer_row][computer_column] = "-"
@@ -146,8 +146,12 @@ def start_screen():
     """
     create_ships(computer_board)
     create_ships(player_board)
-    print("Welcome to Battleships")
-    print("You have 10 turns to find all of the battleships")
+    print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
+    print(" Welcome to Battleships")
+    print(" You have 10 turns to find all of the battleships")
+    print(" there are 8 rows and 8 columns")
+    print(" Good luck!")
+    print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
     global username
     username = input("Please enter your name:\n")
     while username == "" or username == " ":
