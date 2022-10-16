@@ -71,8 +71,10 @@ def computer_guess(board):
             player_board[computer_row][computer_column] == "X"):
         computer_row = randint(0, 7)
         computer_column = randint(0, 7)
-    elif player_board[computer_row][computer_column] == "@":
+    elif player_board[computer_row][computer_column] == "X":
         print(f'Oh no {username}! One of you ships went down!')
+        player_board[computer_row][computer_column] = "X"
+        computer_score += 1
     else:
         print('The computer missed.')
         player_board[computer_row][computer_column] = "-"
