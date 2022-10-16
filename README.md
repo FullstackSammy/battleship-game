@@ -95,3 +95,6 @@ After a round, and you decided to continue playing, a newly generated board is s
 ![hit/miss location]()
 
 When the user hit all 5 ships and wins, a congratulations-message appears and the game ends. The same goes if the computer wins.
+
+## Bugs
+
