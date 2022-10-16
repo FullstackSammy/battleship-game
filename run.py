@@ -79,16 +79,16 @@ def get_ship_location():
     Asks user to input the guesses for ship row and ship column locations
     Returns int for row - 1 to match index number, converts letters to numbers
     """
-    row = input("Please enter a ship row 1-8\n")
+    row = input("Please enter a row (1-8): ")
     while row not in "12345678" or len(row) > 1 or row == "":
         try_row(row)
         print("Please enter a valid row")
-        row = input("Please enter a ship row 1-8\n")
-    column = input("Please enter a ship column A-H\n").upper()
+        row = input("Please enter a row (1-8): ")
+    column = input("Please enter a column (A-H): ").upper()
     while column not in "ABCDEFGH" or len(column) > 1 or column == "":
         try_column(column)
         print("Please enter a valid column")
-        column = input("Please enter a ship column A-H\n").upper()
+        column = input("Please enter a column (A-H): ").upper()
     return int(row) - 1, letters_to_numbers[column]
 
 
