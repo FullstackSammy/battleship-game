@@ -98,3 +98,18 @@ When the user hit all 5 ships and wins, a congratulations-message appears and th
 
 ## Bugs
 
+I encountered a bug where the inputs recieved a ValueError when anything other than what was required was entered, and ended the application.
+I fixed this by building try/except functions that I put in to the input fields.
+
+## Deployment
+
+I deployed this project by using Code Institutes mock terminal for Heroku.
+
+- I created a new heroku app
+- Added key: PORT value: 8000 to the Config vars settings in heroku, which is needed.
+- I added buildpacks Python and NodeJS in given order, for the program to be able to run.
+- Did a manual deployment from heroku
+
+## Credits
+
+
