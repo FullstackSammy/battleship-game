@@ -75,26 +75,29 @@ When the game is started the boards are generated and displayed to the user. The
 - "@" markers for where your ships are
 - input area where you put your guesses
 
-![board screen]()
+![board screen](/assets/images/board.jpg)
 
 If you enter an invalid input ( not an integer or not a letter) when you make your guess. the following errors will show:
 
-![board error]()
+![board error](/assets/images/board-error.jpg)
+
+![board error](/assets/images/board-error2.jpg)
 
 Once you get things right and make a correct guess. The computer will start to calculate and see if either of you got a hit.
 Messages will be displayed and a continue to play option will appear. For example:
 
-![continue playing]()
+![continue playing](/assets/images/continue.jpg)
 
 this also needs a valid input to work. Or you will get the following error:
 
-![continue error]()
+![continue error](/assets/images/continue-error.jpg)
 
 After a round, and you decided to continue playing, a newly generated board is shown with updated information about where you hits and misses are located.
 
-![hit/miss location]()
+![hit/miss location](/assets/images/hitmiss.jpg)
 
 When the user hit all 5 ships and wins, a congratulations-message appears and the game ends. The same goes if the computer wins.
+Or if your turns run out a message will be displayed to let you know that you ran out of turns and the game ends.
 
 ## Bugs
 
@@ -111,5 +114,19 @@ I deployed this project by using Code Institutes mock terminal for Heroku.
 - Did a manual deployment from heroku
 
 ## Credits
+
+- Credits to Code Institute for the deployment terminal
+- After using the PEP8 validator in Gitpod I had a lot of errors for the lines being too long which I found help on [here](https://www.codingem.com/python-how-to-break-long-lines/). Where I learned to put the code of my IF statement in "()" to be able to have it on two lines instead of one.
+- Credits to Knowledge Mavens for the YouTube video How to Code Battleship in Python - Single Player Game. [here is the video](https://www.youtube.com/watch?v=tF1WRCrd_HQ&list=LL&index=3&t=8s&ab_channel=KnowledgeMavens). 
+
+I used the video as the basic layout for the code. I have watched the video again and again, learning as I go and can finally say that I have learned a lot about Python and I am a lot more comfortable with it. And after realizing that his code is just for a single player. I added the following to my code:
+- player_board
+- numbers_to_letters
+- computer_score
+- computer_guess()
+- try_row() and try_column()
+- try_continue_game()
+- start_screen()
+- run_game() (idea taken from CI's Love sandwiches project where one functions run all the other functions.)
 
 
